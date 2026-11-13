@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../config";
+
 
 function AdminDashboard() {
 
@@ -23,7 +25,7 @@ function AdminDashboard() {
 
     axios
       .get(
-        "http://localhost:5000/api/bookings"
+        `${API_URL}/api/bookings`
       )
       .then((res) => {
 
@@ -50,7 +52,7 @@ function AdminDashboard() {
   try {
 
     await axios.delete(
-      `http://localhost:5000/api/bookings/${id}`
+      `${API_URL}/api/bookings/${id}`
     );
 
     setBookings(

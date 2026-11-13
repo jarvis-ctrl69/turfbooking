@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-ADMIN = process.env.ADMIN;
-PASSWORD = process.env.PASSWORD;
+const ADMIN = import.meta.env.VITE_ADMIN;
+const PASSWORD = import.meta.env.VITE_PASSWORD;
+
+
 
 function AdminLogin() {
 

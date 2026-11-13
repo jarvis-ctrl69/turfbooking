@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../config";
 
 function Booking() {
 
@@ -38,7 +39,7 @@ function Booking() {
 
     axios
       .get(
-        "http://localhost:5000/api/bookings"
+        `${API_URL}/api/bookings`
       )
       .then((res) => {
 
@@ -94,7 +95,7 @@ function Booking() {
       try {
 
         await axios.post(
-          "http://localhost:5000/api/booking",
+          `${API_URL}/api/booking`,
           {
             userEmail,
             turfName:

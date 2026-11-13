@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { API_URL } from "../config";
+
 
 function Bookings() {
 
@@ -15,7 +17,7 @@ function Bookings() {
 
     axios
       .get(
-        "http://localhost:5000/api/bookings"
+        `${API_URL}/api/bookings`
       )
       .then((res) => {
 

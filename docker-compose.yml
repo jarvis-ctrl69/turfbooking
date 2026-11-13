@@ -1,0 +1,46 @@
+services:
+  mongodb:
+    image: mongo:7
+    container_name: turf-mongodb
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - turf-net
+
+  backend:
+    build:
+      context: ./dev-challange/mini/backend
+    image: turf-backend:v1
+    container_name: turf-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - MONGO_URI=mongodb://mongodb:27017/turfbooking
+    depends_on:
+      - mongodb
+    networks:
+      - turf-net
+
+  frontend:
+    build:
+      context: ./dev-challange/mini/frontend
+      args:
+        VITE_API_URL: http://localhost:5000
+    image: turf-frontend:v1
+    container_name: turf-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - turf-net
+
+volumes:
+  mongo_data:
+
+networks:
+  turf-net:
+    driver: bridge
